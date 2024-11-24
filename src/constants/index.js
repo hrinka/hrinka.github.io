@@ -17,8 +17,8 @@ import {
     planet2,
     planet3,
     planet4,
-    carrent,
-    jobit,
+    work1,
+    work2,
     tripguide,
     threejs,
     c,
@@ -157,7 +157,6 @@ import {
         "自分の勤めていたショップのD2Cの戦略を強化したいという目標に加えて、世界の各地に友達を作り、旅がしたいという夢があったので、柔軟な働き方ができるエンジニアになることを決めました。",
         "42Tokyoは、フランスパリ発のエンジニア養成機関であり、1ヶ月間にわたる試験を合格すると学費無料で生涯学び続けることができるコミュニティです。",
         "ここでは、プログラミングの基礎から応用まで幅広く学び、実際にプロジェクトを通じてチームでの開発を行い、実践的なスキルを身につけています。",
-        "エンジニアになることで、自分のアイデアを形にし、世界中の人々に価値を提供できると考えています。",
         "42Tokyoでの学習を通じて、エンジニアとしてのスキルを磨き、自分のアイデアを形にし、世界中の人々に価値を提供できるようになることが目標です。",
         "C言語、アルゴリズム、データ構造、ネットワーク、セキュリティ、Web開発、Docker、データベース、CI/CD、アジャイル開発などを学んでいて、現在も学習中です。",
         // "Developing and maintaining web applications using React.js and other related technologies.",
@@ -189,42 +188,42 @@ import {
   
   const projects = [
     {
-      name: "Car Rent",
+      name: "Frog",
       description:
-        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        "Frog is a recruiting agency specializing in the fields of Information Technology, Interactive entertainment & Film industry. Frog’s career consultants either have actual creator experience in the industry at international level, or are Human Resources specialists from corporations not only in North America but beyond.",
       tags: [
         {
-          name: "react",
+          name: "HTML/CSS",
           color: "blue-text-gradient",
         },
         {
-          name: "tailwind",
+          name: "Wordpress",
           color: "pink-text-gradient",
         },
       ],
-      image: carrent,
-      source_code_link: "https://github.com/",
+      image: work1,
+      source_code_link: "https://frogagent.com/",
     },
     {
-      name: "Job IT",
+      name: "Going Jesse",
       description:
-        "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+        "The production project for the web drama 'Going Jesse' reminds us of the time in which we all spend our time harboring various conflicts and vague feelings, the contours of which become blurred as we get older.",
       tags: [
         {
-          name: "react",
+          name: "HTML/CSS",
           color: "blue-text-gradient",
         },
         {
-          name: "restapi",
+          name: "Javascript",
           color: "green-text-gradient",
         },
-        {
-          name: "scss",
-          color: "pink-text-gradient",
-        },
+        // {
+        //   name: "scss",
+        //   color: "pink-text-gradient",
+        // },
       ],
-      image: jobit,
-      source_code_link: "https://github.com/",
+      image: work2,
+      source_code_link: "https://goingjesse.fixville.co/",
     },
     {
       name: "Trip Guide",

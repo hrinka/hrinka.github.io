@@ -25,8 +25,8 @@ import planet2 from "./company/planet2.png";
 import planet3 from "./company/planet3.png";
 import planet4 from "./company/planet4.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
+import work1 from "./work1.png";
+import work2 from "./work2.png";
 import tripguide from "./tripguide.png";
 
 export {
@@ -48,8 +48,8 @@ export {
   tailwind,
   typescript,
   threejs,
-  carrent,
-  jobit,
+  work1,
+  work2,
   tripguide,
   c,
   cpp,

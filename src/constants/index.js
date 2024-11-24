@@ -8,10 +8,7 @@ import {
     html,
     css,
     reactjs,
-    redux,
     tailwind,
-    nodejs,
-    mongodb,
     git,
     figma,
     docker,
@@ -23,6 +20,8 @@ import {
     jobit,
     tripguide,
     threejs,
+    c,
+    cpp,
   } from "../assets";
   
   export const navLinks = [
@@ -61,6 +60,14 @@ import {
   
   const technologies = [
     {
+      name: "C",
+      icon: c,
+    },
+    {
+      name: "C++",
+      icon: cpp,
+    },
+    {
       name: "HTML 5",
       icon: html,
     },
@@ -72,29 +79,17 @@ import {
       name: "JavaScript",
       icon: javascript,
     },
-    {
-      name: "TypeScript",
-      icon: typescript,
-    },
+    // {
+    //   name: "TypeScript",
+    //   icon: typescript,
+    // },
     {
       name: "React JS",
       icon: reactjs,
     },
     {
-      name: "Redux Toolkit",
-      icon: redux,
-    },
-    {
       name: "Tailwind CSS",
       icon: tailwind,
-    },
-    {
-      name: "Node JS",
-      icon: nodejs,
-    },
-    {
-      name: "MongoDB",
-      icon: mongodb,
     },
     {
       name: "Three JS",
@@ -112,6 +107,7 @@ import {
       name: "docker",
       icon: docker,
     },
+
   ];
   
   const experiences = [
@@ -205,10 +201,6 @@ import {
         {
           name: "react",
           color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
         },
         {
           name: "tailwind",

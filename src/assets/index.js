@@ -20,10 +20,10 @@ import threejs from "./tech/threejs.svg";
 import c from "./tech/c.png";
 import cpp from "./tech/cpp.png";
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+import planet1 from "./company/planet1.png";
+import planet2 from "./company/planet2.png";
+import planet3 from "./company/planet3.png";
+import planet4 from "./company/planet4.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -48,13 +48,13 @@ export {
   tailwind,
   typescript,
   threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
   carrent,
   jobit,
   tripguide,
   c,
   cpp,
+  planet1,
+  planet2,
+  planet4,
+  planet3
 };

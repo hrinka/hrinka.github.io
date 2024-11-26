@@ -246,7 +246,7 @@ import {
           color: "green-text-gradient",
         },
         {
-          name: "Wordpress",
+          name: "Wordpress",  
           color: "pink-text-gradient",
         },
       ],

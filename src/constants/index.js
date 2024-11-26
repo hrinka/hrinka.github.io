@@ -19,10 +19,13 @@ import {
     planet4,
     work1,
     work2,
-    tripguide,
+    nekkofm,
     threejs,
     c,
     cpp,
+    wordpress,
+    mygithub,
+    hairsalon,
   } from "../assets";
   
   export const navLinks = [
@@ -108,6 +111,10 @@ import {
       name: "docker",
       icon: docker,
     },
+    {
+      name: "wordPress",
+      icon: wordpress,
+    }
 
   ];
   
@@ -226,25 +233,79 @@ import {
       source_code_link: "https://goingjesse.fixville.co/",
     },
     {
-      name: "Trip Guide",
+      name: "Hair Salon",
       description:
-        "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-      tags: [
+        "A beauty salon located in Hatsushige, Nagareyama City, Chiba Prefecture.",
+          tags: [
         {
-          name: "nextjs",
+          name: "HTML/CSS",
           color: "blue-text-gradient",
         },
         {
-          name: "supabase",
+          name: "Javascript",
           color: "green-text-gradient",
         },
         {
-          name: "css",
+          name: "Wordpress",
           color: "pink-text-gradient",
         },
       ],
-      image: tripguide,
-      source_code_link: "https://github.com/",
+      image: hairsalon,
+      source_code_link: "https://ams-hair.site/",
+    },
+    {
+      name: "NEKKO FM",
+      description:
+        "A fictional street culture media site. It operates a blog with affiliate articles and sells original goods. It also has a bulletin board function.",
+          tags: [
+        {
+          name: "HTML/CSS",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Javascript",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Wordpress",
+          color: "pink-text-gradient",
+        },
+      ],
+      image: nekkofm,
+      source_code_link: "https://nekkofm.tokyo/",
+    },
+    {
+      name: "My Github",
+      description:
+        "This is my guithub. It contains small and large programs I've made using various technologies, including games, shell reimplementations, chat servers, etc.",     
+        tags: [
+        {
+          name: "C",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "C++",
+          color: "pink-text-gradient",
+        },
+        {
+          name: "Docker",
+          color: "green-text-gradient",
+        },
+        {
+          name: "Go",
+          color: "yellow-text-gradient",
+        },
+        {
+          name: "MySQL",
+          color: "purple-text-gradient",
+        },
+        {
+          name: "etc...",
+          color: "pink-text-gradient",
+        }
+      ],
+      image: mygithub,
+      source_code_link: "https://github.com/hrinka",
     },
   ];
   

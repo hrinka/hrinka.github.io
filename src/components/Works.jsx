@@ -14,7 +14,7 @@ const ProjectCard = ({
     description, 
     tags, 
     image, 
-    source_cord_link
+    source_code_link
  }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -33,7 +33,7 @@ const ProjectCard = ({
             />
             <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
               <div
-                onClick={() => window.open(source_cord_link, "_blank")}
+                onClick={() => window.open(source_code_link, "_blank")}
                 className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
               >
                 <img
@@ -83,7 +83,9 @@ const Works = () => {
           real-world examples of my work. Each project is briefly described with
           links to code repositories and live demos in it. It reflects my
           ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+          and manage projects effectively.<br></br><br></br>
+
+          ! Important Notice: Many of the projects I have contributed to are under non-disclosure agreements (NDAs) or other contractual obligations that prevent public sharing. This portfolio includes only the projects for which I have received explicit permission to display.
         </motion.p>
       </div>
 

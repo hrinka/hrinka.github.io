@@ -19,6 +19,7 @@ import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
 import c from "./tech/c.png";
 import cpp from "./tech/cpp.png";
+import wordpress from "./tech/wordpress-logo.png";
 
 import planet1 from "./company/planet1.png";
 import planet2 from "./company/planet2.png";
@@ -27,7 +28,9 @@ import planet4 from "./company/planet4.png";
 
 import work1 from "./work1.png";
 import work2 from "./work2.png";
-import tripguide from "./tripguide.png";
+import nekkofm from "./nekkofm.png";
+import mygithub from "./mygithub.png";
+import hairsalon from "./hairsalon.png";
 
 export {
   logo,
@@ -48,13 +51,16 @@ export {
   tailwind,
   typescript,
   threejs,
-  work1,
+  work1,  
   work2,
-  tripguide,
+  nekkofm,
   c,
   cpp,
   planet1,
   planet2,
-  planet4,
-  planet3
+  planet4,  
+  planet3,
+  mygithub,
+  wordpress,
+  hairsalon,
 };

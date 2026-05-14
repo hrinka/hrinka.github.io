@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useInView } from '@/hooks/useInView'
 
 type Work = {
   title: string
@@ -153,7 +154,7 @@ const works: Work[] = [
 const CATEGORIES = ['All', 'Product', 'Creative', 'Web', 'Systems'] as const
 type Cat = (typeof CATEGORIES)[number]
 
-function WorkCard({ work }: { work: Work }) {
+function WorkCard({ work, index }: { work: Work; index: number }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -167,13 +168,15 @@ function WorkCard({ work }: { work: Work }) {
         borderColor: hovered ? 'rgba(110,231,183,0.3)' : 'var(--border)',
         overflow: 'hidden',
         background: work.youtube ? '#000' : (work.gradient ?? 'rgba(255,255,255,0.02)'),
-        transition: 'border-color 0.25s, transform 0.25s',
-        transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
+        transition: 'border-color 0.25s, transform 0.3s ease, box-shadow 0.3s ease',
+        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+        boxShadow: hovered ? '0 12px 40px rgba(0,0,0,0.4)' : 'none',
         display: 'flex',
         flexDirection: 'column',
+        animation: 'cardIn 0.55s ease both',
+        animationDelay: `${index * 0.07}s`,
       }}
     >
-      {/* YouTube */}
       {work.youtube && (
         <div style={{ position: 'relative', paddingTop: '56.25%', flexShrink: 0 }}>
           <iframe
@@ -186,7 +189,6 @@ function WorkCard({ work }: { work: Work }) {
         </div>
       )}
 
-      {/* Text */}
       <div style={{ padding: '18px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
@@ -258,10 +260,17 @@ function WorkCard({ work }: { work: Work }) {
 
 export default function Works() {
   const [active, setActive] = useState<Cat>('All')
+  const [gridKey, setGridKey] = useState(0)
+  const { ref, inView } = useInView(0.05)
 
   const filtered = active === 'All'
     ? works
     : works.filter((w) => w.category === active)
+
+  function handleFilter(cat: Cat) {
+    setActive(cat)
+    setGridKey(k => k + 1)
+  }
 
   return (
     <section id="works" style={{ background: 'var(--surface)', padding: '100px 32px' }}>
@@ -283,10 +292,9 @@ export default function Works() {
             letterSpacing: '-0.02em', margin: 0,
           }}>Selected Works</h2>
 
-          {/* カテゴリフィルター */}
           <div style={{ display: 'flex', gap: 4 }}>
             {CATEGORIES.map((cat) => (
-              <button key={cat} onClick={() => setActive(cat)} style={{
+              <button key={cat} onClick={() => handleFilter(cat)} style={{
                 fontFamily: 'var(--font-dm-mono)', fontSize: 11,
                 letterSpacing: '0.08em',
                 color: active === cat ? '#010108' : 'var(--text2)',
@@ -300,16 +308,28 @@ export default function Works() {
           </div>
         </div>
 
-        {/* Bentoグリッド */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: 16,
-        }}>
-          {filtered.map((w) => <WorkCard key={w.title} work={w} />)}
+        <div
+          ref={ref}
+          key={gridKey}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 16,
+            opacity: inView ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+          }}
+        >
+          {filtered.map((w, i) => <WorkCard key={w.title} work={w} index={i} />)}
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes cardIn {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   )
 }

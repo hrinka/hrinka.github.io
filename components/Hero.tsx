@@ -45,10 +45,10 @@ const tags = [
 ]
 
 const stats = [
-  { value: '5yr',    label: 'Experience' },
-  { value: '13+',    label: 'Projects'   },
-  { value: '×10',    label: 'Team Lead'  },
-  { value: 'TOEIC',  label: '800'        },
+  { value: '5yr',   label: 'Experience' },
+  { value: '13+',   label: 'Projects'   },
+  { value: '×10',   label: 'Team Lead'  },
+  { value: '800',   label: 'TOEIC'      },
 ]
 
 export default function Hero() {
@@ -90,6 +90,8 @@ export default function Hero() {
           display: 'flex',
           alignItems: 'center',
           gap: 10,
+          animation: 'fadeUp 0.6s ease both',
+          animationDelay: '0.1s',
         }}>
           <span style={{
             width: 6, height: 6, borderRadius: '50%',
@@ -97,7 +99,7 @@ export default function Hero() {
             display: 'inline-block',
             animation: 'blink 1.4s ease-in-out infinite',
           }} />
-          Frontend Developer &amp; Designer
+          Frontend Developer &amp; Creative Director
         </p>
 
         {/* H1 */}
@@ -136,9 +138,11 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Tags */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 44 }}>
-          {tags.map((t) => (
+        {/* Tags — stagger in after scramble */}
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 44,
+        }}>
+          {tags.map((t, i) => (
             <span key={t} style={{
               fontFamily: 'var(--font-dm-mono)',
               fontSize: 10,
@@ -147,43 +151,23 @@ export default function Hero() {
               padding: '3px 9px',
               borderRadius: 3,
               background: 'rgba(255,255,255,0.02)',
+              animation: 'fadeUp 0.5s ease both',
+              animationDelay: `${1.3 + i * 0.05}s`,
             }}>{t}</span>
           ))}
         </div>
 
         {/* CTA */}
-        <div style={{ display: 'flex', gap: 12 }}>
-          <a href="#works" style={{
-            fontFamily: 'var(--font-dm-sans)',
-            fontWeight: 500,
-            fontSize: 14,
-            color: '#010108',
-            background: 'var(--accent)',
-            padding: '11px 26px',
-            borderRadius: 6,
-            textDecoration: 'none',
-            transition: 'opacity 0.2s',
-          }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
+        <div style={{
+          display: 'flex', gap: 12,
+          animation: 'fadeUp 0.6s ease both',
+          animationDelay: '1.85s',
+        }}>
+          <a href="#works" className="hero-cta-primary">
             View Works →
           </a>
           <a href="https://github.com/hrinka" target="_blank" rel="noopener noreferrer"
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontWeight: 500,
-              fontSize: 14,
-              color: 'var(--text)',
-              border: '1px solid var(--border)',
-              padding: '11px 26px',
-              borderRadius: 6,
-              textDecoration: 'none',
-              transition: 'border-color 0.2s',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'var(--border)')}
-          >
+            className="hero-cta-secondary">
             GitHub ↗
           </a>
         </div>
@@ -193,6 +177,8 @@ export default function Hero() {
       <div style={{
         position: 'absolute', bottom: 44, left: 32, zIndex: 10,
         display: 'flex', gap: 28,
+        animation: 'fadeUp 0.6s ease both',
+        animationDelay: '2s',
       }}>
         {stats.map(({ value, label }) => (
           <div key={label}>
@@ -215,6 +201,8 @@ export default function Hero() {
       <div style={{
         position: 'absolute', bottom: 44, right: 32, zIndex: 10,
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+        animation: 'fadeUp 0.6s ease both',
+        animationDelay: '2.1s',
       }}>
         <span style={{
           fontFamily: 'var(--font-dm-mono)', fontSize: 9,
@@ -226,13 +214,46 @@ export default function Hero() {
           background: 'linear-gradient(to bottom, var(--accent), transparent)',
           animation: 'scrollLine 2s ease-in-out infinite',
         }} />
-        <style>{`
-          @keyframes scrollLine {
-            0%   { opacity: 1; transform: scaleY(1)   translateY(0);   }
-            100% { opacity: 0; transform: scaleY(0.2) translateY(20px); }
-          }
-        `}</style>
       </div>
+
+      <style>{`
+        @keyframes scrollLine {
+          0%   { opacity: 1; transform: scaleY(1)   translateY(0);   }
+          100% { opacity: 0; transform: scaleY(0.2) translateY(20px); }
+        }
+        .hero-cta-primary {
+          font-family: var(--font-dm-sans);
+          font-weight: 500;
+          font-size: 14px;
+          color: #010108;
+          background: var(--accent);
+          padding: 11px 26px;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: opacity 0.2s, transform 0.2s;
+          display: inline-block;
+        }
+        .hero-cta-primary:hover {
+          opacity: 0.88;
+          transform: translateY(-1px);
+        }
+        .hero-cta-secondary {
+          font-family: var(--font-dm-sans);
+          font-weight: 500;
+          font-size: 14px;
+          color: var(--text);
+          border: 1px solid var(--border);
+          padding: 11px 26px;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: border-color 0.2s, transform 0.2s;
+          display: inline-block;
+        }
+        .hero-cta-secondary:hover {
+          border-color: rgba(255,255,255,0.25);
+          transform: translateY(-1px);
+        }
+      `}</style>
     </section>
   )
 }

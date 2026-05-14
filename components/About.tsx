@@ -1,5 +1,7 @@
 'use client'
 
+import { useInView } from '@/hooks/useInView'
+
 const skills = [
   'Next.js 15', 'React', 'TypeScript', 'Three.js', 'Tailwind CSS',
   'shadcn/ui', 'WebSocket', 'Nuxt.js',
@@ -10,10 +12,10 @@ const skills = [
 ]
 
 const highlights = [
-  { value: '5yr+',  label: '実務経験'         },
-  { value: '13+',   label: 'Projects'          },
-  { value: '×10',   label: 'Team Lead'         },
-  { value: '800',   label: 'TOEIC'             },
+  { value: '5yr+',  label: '実務経験'          },
+  { value: '13+',   label: 'Projects'           },
+  { value: '×10',   label: 'Team Lead'          },
+  { value: '800',   label: 'TOEIC'              },
   { value: '42T',   label: 'フルカリキュラム修了' },
 ]
 
@@ -31,23 +33,36 @@ const bioLines = [
   '感性と技術が融合した作品に取り組んでいる。',
 ]
 
+function reveal(inView: boolean, delay = 0) {
+  return {
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0)' : 'translateY(24px)',
+    transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+  }
+}
+
 export default function About() {
+  const { ref: headerRef, inView: headerInView } = useInView()
+  const { ref: bioRef,    inView: bioInView    } = useInView()
+  const { ref: skillsRef, inView: skillsInView } = useInView()
+
   return (
     <section id="about" style={{ background: 'var(--bg)', padding: '100px 32px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
-        <p style={{
-          fontFamily: 'var(--font-dm-mono)',
-          fontSize: 11,
-          letterSpacing: '0.18em',
-          color: 'var(--accent)',
-          textTransform: 'uppercase',
-          marginBottom: 56,
-        }}>
-          About
-        </p>
+        <div ref={headerRef} style={reveal(headerInView)}>
+          <p style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: 11,
+            letterSpacing: '0.18em',
+            color: 'var(--accent)',
+            textTransform: 'uppercase',
+            marginBottom: 56,
+          }}>
+            About
+          </p>
+        </div>
 
-        {/* 2カラム */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -56,7 +71,7 @@ export default function About() {
         }}>
 
           {/* Bio */}
-          <div>
+          <div ref={bioRef} style={reveal(bioInView, 0.1)}>
             <div style={{
               fontFamily: 'var(--font-dm-sans)',
               fontSize: 'clamp(14px, 1.6vw, 17px)',
@@ -73,7 +88,6 @@ export default function About() {
               )}
             </div>
 
-            {/* Highlights */}
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -82,8 +96,10 @@ export default function About() {
               paddingTop: 36,
               borderTop: '1px solid var(--border)',
             }}>
-              {highlights.map(({ value, label }) => (
-                <div key={label}>
+              {highlights.map(({ value, label }, i) => (
+                <div key={label} style={{
+                  ...reveal(bioInView, 0.2 + i * 0.07),
+                }}>
                   <div style={{
                     fontFamily: 'var(--font-syne)',
                     fontWeight: 700,
@@ -104,7 +120,7 @@ export default function About() {
           </div>
 
           {/* Skills */}
-          <div>
+          <div ref={skillsRef} style={reveal(skillsInView, 0.15)}>
             <p style={{
               fontFamily: 'var(--font-dm-mono)',
               fontSize: 10,
@@ -116,9 +132,10 @@ export default function About() {
               Tech Stack
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {skills.map((s) => (
+              {skills.map((s, i) => (
                 <span
                   key={s}
+                  className="skill-tag"
                   style={{
                     fontFamily: 'var(--font-dm-mono)',
                     fontSize: 11,
@@ -127,8 +144,10 @@ export default function About() {
                     padding: '5px 11px',
                     borderRadius: 4,
                     background: 'rgba(255,255,255,0.02)',
-                    transition: 'color 0.2s, border-color 0.2s',
                     cursor: 'default',
+                    opacity: skillsInView ? 1 : 0,
+                    transform: skillsInView ? 'translateY(0)' : 'translateY(10px)',
+                    transition: `opacity 0.4s ease ${0.1 + i * 0.025}s, transform 0.4s ease ${0.1 + i * 0.025}s, color 0.2s, border-color 0.2s`,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = 'var(--accent)'
@@ -144,13 +163,13 @@ export default function About() {
               ))}
             </div>
 
-            {/* AI-driven */}
             <div style={{
               marginTop: 36,
               padding: '20px 22px',
               border: '1px solid rgba(110,231,183,0.2)',
               borderRadius: 10,
               background: 'rgba(110,231,183,0.03)',
+              ...reveal(skillsInView, 0.5),
             }}>
               <p style={{
                 fontFamily: 'var(--font-dm-mono)',

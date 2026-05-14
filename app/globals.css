@@ -79,6 +79,20 @@ section {
   animation: blink 1.2s ease-in-out infinite;
 }
 
+/* スクロールリビール */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* マーキー */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* スクロールライン */
+
 /* グラデーションテキスト */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent), var(--accent2));

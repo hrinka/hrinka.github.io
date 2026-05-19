@@ -21,9 +21,9 @@ export default function Contact() {
   return (
     <section
       id="contact"
+      className="contact-section"
       style={{
         position: 'relative',
-        padding: '140px 32px 80px',
         overflow: 'hidden',
         background: 'var(--bg)',
       }}
@@ -234,6 +234,18 @@ export default function Contact() {
           border-color: rgba(110,231,183,0.3);
           background: rgba(110,231,183,0.04);
           transform: translateY(-2px);
+        }
+
+        .contact-section { padding: 140px 32px 80px; }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .contact-section { padding: 100px 24px 64px; }
+        }
+
+        @media (max-width: 639px) {
+          .contact-section { padding: 72px 20px 56px; }
+          .email-cta { font-size: clamp(16px, 5vw, 28px); word-break: break-all; }
+          .social-link { padding: 14px 20px; width: 100%; }
         }
       `}</style>
     </section>

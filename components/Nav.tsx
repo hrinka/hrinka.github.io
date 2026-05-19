@@ -28,49 +28,49 @@ export default function Nav() {
       WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
       borderBottom: `1px solid ${scrolled ? 'rgba(255,255,255,0.06)' : 'transparent'}`,
     }}>
-      <div style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '0 32px',
-        height: 64,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
+      <div className="nav-container">
 
-        <a href="#" style={{
-          fontFamily: 'var(--font-syne)',
-          fontWeight: 800,
-          fontSize: 20,
-          letterSpacing: '-0.02em',
-          color: 'var(--text)',
-          textDecoration: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 2,
-        }}>
+        <a href="#" className="nav-logo">
           Cosmic<span style={{ color: 'var(--accent)' }}>Θ</span>
         </a>
 
-        <ul style={{ display: 'flex', gap: 36, listStyle: 'none', margin: 0, padding: 0 }}
-          className="nav-links">
+        <ul className="nav-links">
           {links.map(({ label, href }) => (
             <li key={label}>
-              <a href={href} className="nav-link">
-                {label}
-              </a>
+              <a href={href} className="nav-link">{label}</a>
             </li>
           ))}
         </ul>
 
-        <a href="#contact" className="nav-cta">
-          Message
-        </a>
+        <a href="#contact" className="nav-cta">Message</a>
       </div>
 
       <style>{`
-        @media(max-width:640px){.nav-links{display:none}}
-
+        .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 32px;
+          height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .nav-logo {
+          font-family: var(--font-syne);
+          font-weight: 800;
+          font-size: 20px;
+          letter-spacing: -0.02em;
+          color: var(--text);
+          text-decoration: none;
+          flex-shrink: 0;
+        }
+        .nav-links {
+          display: flex;
+          gap: 36px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
         .nav-link {
           font-family: var(--font-dm-mono);
           font-size: 12px;
@@ -84,10 +84,8 @@ export default function Nav() {
         .nav-link::after {
           content: '';
           position: absolute;
-          left: 0;
-          bottom: -1px;
-          width: 100%;
-          height: 1px;
+          left: 0; bottom: -1px;
+          width: 100%; height: 1px;
           background: var(--accent);
           transform: scaleX(0);
           transform-origin: left;
@@ -106,10 +104,19 @@ export default function Nav() {
           border-radius: 9999px;
           text-decoration: none;
           transition: background 0.2s, border-color 0.2s;
+          flex-shrink: 0;
         }
         .nav-cta:hover {
           background: rgba(110,231,183,0.08);
           border-color: rgba(110,231,183,0.6);
+        }
+
+        /* ── モバイル ── */
+        @media (max-width: 639px) {
+          .nav-container { padding: 0 20px; height: 56px; }
+          .nav-logo { font-size: 18px; }
+          .nav-links { display: none; }
+          .nav-cta { font-size: 10px; padding: 6px 14px; }
         }
       `}</style>
     </nav>

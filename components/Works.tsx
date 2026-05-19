@@ -161,8 +161,8 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className={work.wide ? 'work-card work-card-wide' : 'work-card'}
       style={{
-        gridColumn: work.wide ? 'span 2' : 'span 1',
         borderRadius: 12,
         border: '1px solid',
         borderColor: hovered ? 'rgba(110,231,183,0.3)' : 'var(--border)',
@@ -190,7 +190,6 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
       )}
 
       <div style={{ padding: '18px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6 }}>
           {work.badge && (
             <span style={{
@@ -206,14 +205,14 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
             }}>{work.badge}</span>
           )}
           {work.period && (
-            <span style={{
-              fontFamily: 'var(--font-dm-mono)', fontSize: 10, color: 'var(--text2)',
-            }}>{work.period}</span>
+            <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: 10, color: 'var(--text2)' }}>
+              {work.period}
+            </span>
           )}
           {work.role && (
-            <span style={{
-              fontFamily: 'var(--font-dm-mono)', fontSize: 10, color: 'var(--text2)',
-            }}>· {work.role}</span>
+            <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: 10, color: 'var(--text2)' }}>
+              · {work.role}
+            </span>
           )}
         </div>
 
@@ -273,7 +272,7 @@ export default function Works() {
   }
 
   return (
-    <section id="works" style={{ background: 'var(--surface)', padding: '100px 32px' }}>
+    <section id="works" className="works-section">
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
         <p style={{
@@ -282,17 +281,15 @@ export default function Works() {
           textTransform: 'uppercase', marginBottom: 16,
         }}>Works</p>
 
-        <div style={{
-          display: 'flex', justifyContent: 'space-between',
-          alignItems: 'flex-end', marginBottom: 40, flexWrap: 'wrap', gap: 16,
-        }}>
+        <div className="works-header">
           <h2 style={{
             fontFamily: 'var(--font-syne)', fontWeight: 800,
-            fontSize: 'clamp(32px, 5vw, 52px)', color: 'var(--text)',
+            fontSize: 'clamp(28px, 5vw, 52px)', color: 'var(--text)',
             letterSpacing: '-0.02em', margin: 0,
           }}>Selected Works</h2>
 
-          <div style={{ display: 'flex', gap: 4 }}>
+          {/* カテゴリフィルター */}
+          <div className="works-filters">
             {CATEGORIES.map((cat) => (
               <button key={cat} onClick={() => handleFilter(cat)} style={{
                 fontFamily: 'var(--font-dm-mono)', fontSize: 11,
@@ -308,13 +305,12 @@ export default function Works() {
           </div>
         </div>
 
+        {/* Bento グリッド */}
         <div
           ref={ref}
           key={gridKey}
+          className="works-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 16,
             opacity: inView ? 1 : 0,
             transition: 'opacity 0.3s ease',
           }}
@@ -325,9 +321,53 @@ export default function Works() {
       </div>
 
       <style>{`
+        .works-section {
+          background: var(--surface);
+          padding: 100px 32px;
+        }
+        .works-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .works-filters {
+          display: flex;
+          gap: 4px;
+          flex-wrap: wrap;
+        }
+        .works-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        /* wide カード: デスクトップで 2 列分 */
+        .work-card-wide { grid-column: span 2; }
+
         @keyframes cardIn {
           from { opacity: 0; transform: translateY(22px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── タブレット (640px〜1023px) ── */
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .works-section { padding: 80px 24px; }
+          .works-grid { grid-template-columns: repeat(2, 1fr); }
+          /* wide カードはタブレットでも 2 列分（= フル幅） */
+          .work-card-wide { grid-column: span 2; }
+        }
+
+        /* ── モバイル (≤ 639px) ── */
+        @media (max-width: 639px) {
+          .works-section { padding: 64px 16px; }
+          .works-header { margin-bottom: 28px; }
+          .works-grid { grid-template-columns: 1fr; gap: 12px; }
+          /* wide カードもモバイルでは 1 列 */
+          .work-card-wide { grid-column: span 1 !important; }
+          .works-filters { gap: 6px; }
+          .works-filters button { font-size: 10px; padding: 4px 10px; }
         }
       `}</style>
     </section>

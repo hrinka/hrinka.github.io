@@ -47,7 +47,7 @@ export default function About() {
   const { ref: skillsRef, inView: skillsInView } = useInView()
 
   return (
-    <section id="about" style={{ background: 'var(--bg)', padding: '100px 32px' }}>
+    <section id="about" className="about-section">
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
         <div ref={headerRef} style={reveal(headerInView)}>
@@ -58,17 +58,10 @@ export default function About() {
             color: 'var(--accent)',
             textTransform: 'uppercase',
             marginBottom: 56,
-          }}>
-            About
-          </p>
+          }}>About</p>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 64,
-          alignItems: 'start',
-        }}>
+        <div className="about-grid">
 
           {/* Bio */}
           <div ref={bioRef} style={reveal(bioInView, 0.1)}>
@@ -88,18 +81,9 @@ export default function About() {
               )}
             </div>
 
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 24,
-              marginTop: 48,
-              paddingTop: 36,
-              borderTop: '1px solid var(--border)',
-            }}>
-              {highlights.map(({ value, label }, i) => (
-                <div key={label} style={{
-                  ...reveal(bioInView, 0.2 + i * 0.07),
-                }}>
+            <div className="about-highlights" style={reveal(bioInView, 0.2)}>
+              {highlights.map(({ value, label }) => (
+                <div key={label}>
                   <div style={{
                     fontFamily: 'var(--font-syne)',
                     fontWeight: 700,
@@ -128,14 +112,12 @@ export default function About() {
               color: 'var(--text2)',
               textTransform: 'uppercase',
               marginBottom: 24,
-            }}>
-              Tech Stack
-            </p>
+            }}>Tech Stack</p>
+
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {skills.map((s, i) => (
                 <span
                   key={s}
-                  className="skill-tag"
                   style={{
                     fontFamily: 'var(--font-dm-mono)',
                     fontSize: 11,
@@ -178,9 +160,7 @@ export default function About() {
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 marginBottom: 10,
-              }}>
-                AI-Driven Development
-              </p>
+              }}>AI-Driven Development</p>
               <p style={{
                 fontFamily: 'var(--font-dm-sans)',
                 fontSize: 13,
@@ -194,6 +174,37 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .about-section { background: var(--bg); padding: 100px 32px; }
+
+        .about-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 64px;
+          align-items: start;
+        }
+
+        .about-highlights {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 24px;
+          margin-top: 48px;
+          padding-top: 36px;
+          border-top: 1px solid var(--border);
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+          .about-section { padding: 80px 24px; }
+          .about-grid { gap: 48px; }
+        }
+
+        @media (max-width: 639px) {
+          .about-section { padding: 64px 20px; }
+          .about-grid { grid-template-columns: 1fr; gap: 48px; }
+          .about-highlights { gap: 20px; margin-top: 36px; padding-top: 28px; }
+        }
+      `}</style>
     </section>
   )
 }

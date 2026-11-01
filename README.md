@@ -1,8 +1,11 @@
-# React + Vite
+# COSMIC THETA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+COSMIC THETA（本間梨花）の事業サイト。Next.js 15（静的出力）＋ Tailwind v4 ＋ Three.js。GitHub Pages で公開。
 
-Currently, two official plugins are available:
+```bash
+npm ci
+npm run dev     # http://localhost:3000
+npm run build   # out/ に静的ファイルを出力
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`main` への push で GitHub Actions が公開する。作業はブランチで行い、PR を確認してからマージする。
